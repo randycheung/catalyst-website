@@ -20,6 +20,15 @@
   --color-gold: #b8960c;
   --color-gold-bright: #e0c25a;
   --color-gold-dim: #6b550a;
+
+  --animate-shake: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+
+  @keyframes shake {
+    10%, 90% { transform: translateX(-1px); }
+    20%, 80% { transform: translateX(2px); }
+    30%, 50%, 70% { transform: translateX(-4px); }
+    40%, 60% { transform: translateX(4px); }
+  }
 }
 
 @layer base {
@@ -132,4 +141,23 @@
 
 [data-philosophy-item][data-active="true"] {
   opacity: 1;
+}
+
+/* Password gate: fail closed by default (gate shown, site hidden) —
+   only `html.gate-unlocked` (set by an inline head script reading
+   localStorage, or by main.js on a correct submit) reveals the site. */
+[data-gate] {
+  display: flex;
+}
+
+#site-content {
+  display: none;
+}
+
+html.gate-unlocked [data-gate] {
+  display: none;
+}
+
+html.gate-unlocked #site-content {
+  display: block;
 }

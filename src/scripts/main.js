@@ -6,6 +6,66 @@ gsap.registerPlugin(ScrollTrigger);
 
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+const GATE_PASSWORD = "Catalyst2026!";
+const GATE_STORAGE_KEY = "catalyst-gate-unlocked";
+
+function initPasswordGate(onUnlock) {
+  const gate = document.querySelector("[data-gate]");
+  const form = document.querySelector("[data-gate-form]");
+  const input = document.querySelector("[data-gate-input]");
+  const error = document.querySelector("[data-gate-error]");
+  const content = document.getElementById("site-content");
+  if (!gate || !form || !input) return;
+
+  input.focus();
+
+  const unlock = () => {
+    try {
+      localStorage.setItem(GATE_STORAGE_KEY, "true");
+    } catch (e) {}
+
+    if (prefersReducedMotion) {
+      document.documentElement.classList.add("gate-unlocked");
+      onUnlock?.();
+      return;
+    }
+
+    gsap.to(gate, {
+      opacity: 0,
+      duration: 0.6,
+      ease: "power2.out",
+      onComplete: () => {
+        document.documentElement.classList.add("gate-unlocked");
+        onUnlock?.();
+        if (content) {
+          gsap.fromTo(content, { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power2.out" });
+        }
+      },
+    });
+  };
+
+  const reject = () => {
+    error?.classList.remove("hidden");
+    input.value = "";
+    input.focus();
+
+    if (prefersReducedMotion) return;
+
+    input.classList.remove("animate-shake");
+    void input.offsetWidth;
+    input.classList.add("animate-shake");
+  };
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (input.value === GATE_PASSWORD) {
+      unlock();
+    } else {
+      reject();
+    }
+  });
+}
+
 function initSmoothScroll() {
   if (prefersReducedMotion) return;
 
@@ -316,7 +376,7 @@ function initHorizontalScroll() {
   });
 }
 
-function init() {
+function initSiteAnimations() {
   initSmoothScroll();
   initNav();
   initHero();
@@ -328,6 +388,16 @@ function init() {
   initMarquee();
   initDrawPaths();
   initHorizontalScroll();
+  ScrollTrigger.refresh();
+}
+
+function init() {
+  if (document.documentElement.classList.contains("gate-unlocked")) {
+    initSiteAnimations();
+    return;
+  }
+
+  initPasswordGate(initSiteAnimations);
 }
 
 if (document.readyState === "loading") {

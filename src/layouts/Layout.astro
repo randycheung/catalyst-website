@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import PasswordGate from "../components/PasswordGate.astro";
 
 interface Props {
   title?: string;
@@ -16,6 +17,15 @@ const {
 <html lang="en">
   <head>
     <meta charset="utf-8" />
+    <script is:inline>
+      (function () {
+        try {
+          if (localStorage.getItem("catalyst-gate-unlocked") === "true") {
+            document.documentElement.classList.add("gate-unlocked");
+          }
+        } catch (e) {}
+      })();
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
@@ -53,6 +63,9 @@ const {
     </noscript>
   </head>
   <body class="bg-ink text-cream selection:bg-gold selection:text-ink">
-    <slot />
+    <PasswordGate />
+    <div id="site-content">
+      <slot />
+    </div>
   </body>
 </html>
