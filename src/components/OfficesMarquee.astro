@@ -1,0 +1,25 @@
+---
+const offices = ["Sydney", "Singapore", "London", "Dubai", "New York"];
+---
+
+<section class="relative border-y border-line bg-ink py-7">
+  <div class="no-scrollbar overflow-hidden">
+    <div data-marquee data-marquee-speed="70" class="flex w-max shrink-0 items-center gap-8 pr-8">
+      {Array.from({ length: 2 }).flatMap((_, rep) =>
+        offices.map((office, i) => (
+          <>
+            <span
+              class="font-display whitespace-nowrap text-2xl text-cream-dim sm:text-3xl"
+              aria-hidden={rep === 1 ? "true" : undefined}
+            >
+              {office}
+            </span>
+            {!(rep === 1 && i === offices.length - 1) && (
+              <span class="text-2xl text-gold sm:text-3xl" aria-hidden="true">·</span>
+            )}
+          </>
+        ))
+      )}
+    </div>
+  </div>
+</section>

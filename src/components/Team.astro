@@ -1,0 +1,44 @@
+---
+const team = [
+  {
+    initials: "DP",
+    name: "Deepan Pavendranathan",
+    title: "Founder & CIO",
+    note: "Sets the firm's macro conviction and capital allocation discipline.",
+  },
+  {
+    initials: "RC",
+    name: "Randy Cheung",
+    title: "Managing Director",
+    note: "Leads institutional partnerships and firm-wide operations.",
+  },
+  {
+    initials: "HW",
+    name: "Henry Willoughby",
+    title: "Head of Systematic Investing",
+    note: "Builds and governs the firm's quantitative strategy suite.",
+  },
+];
+---
+
+<section id="team" class="relative flex min-h-screen items-center border-t border-line bg-surface">
+  <div class="mx-auto w-full max-w-7xl px-6 py-24 lg:px-10">
+    <p class="eyebrow" data-reveal>Leadership</p>
+    <h2 data-reveal class="mt-5 max-w-2xl text-balance font-display text-4xl font-light leading-tight text-cream sm:text-5xl">
+      The people behind the conviction.
+    </h2>
+
+    <div data-flip-group class="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      {team.map((member) => (
+        <div data-flip-card class="rounded-2xl border border-gold/20 bg-surface-2 p-10">
+          <div class="flex h-24 w-24 items-center justify-center rounded-full border border-gold/50">
+            <span class="font-display text-2xl text-gold">{member.initials}</span>
+          </div>
+          <h3 class="mt-8 font-display text-2xl font-medium text-cream">{member.name}</h3>
+          <p class="eyebrow mt-2">{member.title}</p>
+          <p class="mt-5 text-sm leading-relaxed text-cream-dim">{member.note}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

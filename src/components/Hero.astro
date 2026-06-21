@@ -1,57 +1,46 @@
 ---
+const words = ["Catalyst", "Funds", "Management"];
+const tagline = "Where Truth Meets Capital";
 ---
 
-<section id="top" class="relative flex min-h-screen items-center overflow-hidden bg-ink pt-32 pb-24">
-  <div class="pointer-events-none absolute inset-0">
-    <div
-      class="absolute inset-0 opacity-[0.07]"
-      style="background-image: linear-gradient(to right, var(--color-cream) 1px, transparent 1px), linear-gradient(to bottom, var(--color-cream) 1px, transparent 1px); background-size: 64px 64px;"
-    >
-    </div>
-    <div
-      class="absolute -top-40 right-[-10%] h-[640px] w-[640px] rounded-full opacity-30 blur-3xl"
-      style="background: radial-gradient(circle, var(--color-emerald), transparent 70%);"
-    >
-    </div>
-    <div
-      class="absolute bottom-[-20%] left-[-10%] h-[520px] w-[520px] rounded-full opacity-20 blur-3xl"
-      style="background: radial-gradient(circle, var(--color-gold-dim), transparent 70%);"
-    >
-    </div>
-
-    <svg
-      class="absolute bottom-0 left-0 h-[40%] w-full opacity-60"
-      viewBox="0 0 1200 300"
-      preserveAspectRatio="none"
-      fill="none"
-    >
-      <path
-        data-draw-path
-        d="M0 260 C 120 250, 180 200, 260 210 C 360 222, 400 150, 480 140 C 580 128, 620 180, 700 150 C 800 114, 840 60, 940 50 C 1020 42, 1080 70, 1200 20"
-        stroke="var(--color-gold)"
-        stroke-width="1.5"
-        stroke-linecap="round"
-      />
-    </svg>
+<section id="top" class="relative flex min-h-screen items-center overflow-hidden bg-ink">
+  <div
+    data-hero-bg
+    class="absolute inset-0 scale-110 bg-cover bg-center"
+    style="background-image: linear-gradient(180deg, rgba(8,8,8,0.5) 0%, rgba(8,8,8,0.78) 55%, rgba(8,8,8,0.97) 100%), radial-gradient(ellipse at 50% 30%, rgba(184,150,12,0.12), transparent 60%), url('https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=1920&q=80'); background-color: var(--color-ink);"
+  >
   </div>
 
-  <div class="relative mx-auto w-full max-w-7xl px-6 lg:px-10">
+  <div
+    class="pointer-events-none absolute inset-0 opacity-[0.06]"
+    style="background-image: linear-gradient(to right, var(--color-cream) 1px, transparent 1px), linear-gradient(to bottom, var(--color-cream) 1px, transparent 1px); background-size: 64px 64px;"
+  >
+  </div>
+
+  <div class="relative mx-auto w-full max-w-7xl px-6 pt-24 lg:px-10">
     <p class="eyebrow overflow-hidden">
-      <span data-hero-line class="inline-block">Institutional Alternative Investment</span>
+      <span data-hero-pre class="inline-block">Sydney · Singapore · London · Dubai · New York</span>
     </p>
 
-    <h1 class="mt-7 max-w-4xl font-display text-balance text-5xl font-light leading-[1.08] text-cream sm:text-6xl lg:text-7xl">
-      <span class="block overflow-hidden">
-        <span data-hero-line class="inline-block">Disciplined capital,</span>
-      </span>
-      <span class="block overflow-hidden">
-        <span data-hero-line class="inline-block">deployed with <em class="font-medium not-italic text-gold">conviction.</em></span>
-      </span>
+    <h1
+      data-hero-name
+      class="mt-7 max-w-5xl font-display text-balance text-6xl font-light leading-[1.02] text-cream sm:text-7xl lg:text-[6.5rem]"
+    >
+      {words.map((word, wi) => (
+        <>
+          <span class="inline-block whitespace-nowrap">
+            {word.split("").map((ch) => (
+              <span data-letter class="inline-block">{ch}</span>
+            ))}
+          </span>
+          {wi < words.length - 1 && " "}
+        </>
+      ))}
     </h1>
 
     <div class="mt-9 max-w-xl overflow-hidden">
-      <p data-hero-line class="inline-block text-balance text-lg leading-relaxed text-cream-dim">
-        Catalyst Funds Management is a private alternative investment firm partnering with institutions and family offices to compound capital across private credit, real assets, and special situations.
+      <p data-hero-line class="inline-block text-balance text-xl text-gold font-display italic">
+        {tagline}
       </p>
     </div>
 
@@ -61,22 +50,22 @@
           href="#strategies"
           class="rounded-full bg-gold px-7 py-3.5 text-sm font-medium text-ink transition-transform duration-300 hover:scale-[1.03]"
         >
-          View Strategies
+          Our Strategies
         </a>
         <a
           href="#contact"
-          class="rounded-full border border-line px-7 py-3.5 text-sm text-cream transition-colors duration-300 hover:border-gold hover:text-gold"
+          class="rounded-full border border-cream/30 px-7 py-3.5 text-sm text-cream transition-colors duration-300 hover:border-gold hover:text-gold"
         >
-          Investor Login
+          Contact Us
         </a>
       </div>
     </div>
   </div>
 
   <div class="absolute inset-x-0 bottom-10 flex justify-center">
-    <div data-scroll-cue class="flex flex-col items-center gap-3 text-muted">
-      <span class="eyebrow !text-muted">Scroll</span>
-      <span class="h-10 w-px bg-gradient-to-b from-muted to-transparent"></span>
+    <div data-scroll-cue class="flex flex-col items-center gap-3 text-cream-dim">
+      <span class="eyebrow !text-cream-dim">Scroll</span>
+      <span class="h-10 w-px bg-gradient-to-b from-gold to-transparent"></span>
     </div>
   </div>
 </section>

@@ -2,63 +2,64 @@
 const strategies = [
   {
     index: "01",
-    title: "Private Credit",
-    allocation: "38%",
+    title: "Global Macro",
+    allocation: "32%",
     description:
-      "Senior secured direct lending to mid-market sponsors, structured for contractual income and downside protection through the cycle.",
+      "Directional and relative-value positioning across rates, currencies, and commodities, built on independent macroeconomic research.",
   },
   {
     index: "02",
-    title: "Real Assets & Infrastructure",
-    allocation: "24%",
+    title: "Systematic",
+    allocation: "27%",
     description:
-      "Long-duration ownership of essential infrastructure and real asset platforms generating inflation-linked cash flows.",
+      "Quantitative, model-driven strategies executed with discipline across equity, futures, and volatility markets at scale.",
   },
   {
     index: "03",
-    title: "Special Situations",
-    allocation: "21%",
+    title: "Credit",
+    allocation: "23%",
     description:
-      "Opportunistic capital deployed into complex, dislocated, and event-driven situations across the capital structure.",
+      "Senior secured and special situations credit, underwritten for contractual income and structural downside protection.",
   },
   {
     index: "04",
-    title: "Secondaries & Co-Investments",
-    allocation: "17%",
+    title: "Multi-Strategy",
+    allocation: "18%",
     description:
-      "Privileged access to seasoned private equity portfolios and direct co-investments alongside trusted sponsors.",
+      "Capital allocated dynamically across internal strategies to capture the highest-conviction opportunities of the cycle.",
   },
 ];
 ---
 
-<section id="strategies" data-horizontal-section class="relative bg-surface">
+<section id="strategies" data-horizontal-section class="relative min-h-screen bg-surface">
   <div class="mx-auto max-w-7xl px-6 pt-24 lg:px-10">
-    <p class="eyebrow">Investment Strategies</p>
-    <h2 class="mt-5 max-w-2xl text-balance font-display text-4xl font-light leading-tight text-cream sm:text-5xl">
-      Four disciplines. One underwriting standard.
+    <p class="eyebrow" data-reveal>Investment Strategies</p>
+    <h2 class="mt-5 max-w-2xl text-balance font-display text-4xl font-light leading-tight text-cream sm:text-5xl" data-reveal>
+      Four disciplines. One pursuit of truth.
     </h2>
   </div>
 
   <div class="no-scrollbar mt-16 overflow-x-auto px-6 pb-24 lg:overflow-x-hidden lg:px-0 lg:pb-32">
     <div
       data-horizontal-track
+      data-reveal-group
       class="flex w-max gap-6 lg:gap-8 lg:px-[max(2.5rem,calc((100vw-80rem)/2+2.5rem))]"
     >
       {strategies.map((s) => (
         <article
-          data-reveal
-          class="flex h-[420px] w-[300px] flex-col justify-between rounded-2xl border border-line bg-surface-2 p-8 sm:h-[460px] sm:w-[360px]"
+          data-reveal-item
+          class="flex h-[440px] w-[300px] flex-col justify-between rounded-2xl border border-gold/20 bg-surface-2 p-8 sm:h-[480px] sm:w-[380px]"
         >
           <div>
-            <span class="font-mono text-sm text-gold">{s.index}</span>
-            <h3 class="mt-6 font-display text-2xl font-medium leading-snug text-cream">
+            <span class="font-display text-2xl text-gold">{s.index}</span>
+            <h3 class="mt-6 font-display text-3xl font-medium leading-snug text-cream">
               {s.title}
             </h3>
           </div>
-          <p class="text-sm leading-relaxed text-cream-dim">{s.description}</p>
+          <p class="text-base leading-relaxed text-cream-dim">{s.description}</p>
           <div class="flex items-baseline justify-between border-t border-line pt-5">
             <span class="eyebrow !text-muted">Target Allocation</span>
-            <span class="font-display text-xl text-gold">{s.allocation}</span>
+            <span class="font-display text-2xl text-gold">{s.allocation}</span>
           </div>
         </article>
       ))}

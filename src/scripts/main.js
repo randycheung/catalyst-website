@@ -34,30 +34,75 @@ function initNav() {
 }
 
 function initHero() {
+  const pre = document.querySelectorAll("[data-hero-pre]");
+  const letters = document.querySelectorAll("[data-letter]");
   const lines = document.querySelectorAll("[data-hero-line]");
-  if (!lines.length) return;
-
-  gsap.set(lines, { yPercent: 110 });
-  gsap.to(lines, {
-    yPercent: 0,
-    duration: 1.1,
-    ease: "power3.out",
-    stagger: 0.1,
-    delay: 0.2,
-  });
-
   const cue = document.querySelector("[data-scroll-cue]");
+
+  if (prefersReducedMotion) {
+    gsap.set([...pre, ...letters, ...lines], { opacity: 1, yPercent: 0, y: 0 });
+    if (cue) gsap.set(cue, { opacity: 1 });
+    return;
+  }
+
+  const tl = gsap.timeline({ delay: 0.3 });
+
+  if (pre.length) {
+    tl.to(pre, { yPercent: 0, duration: 0.7, ease: "power3.out" });
+  }
+  if (letters.length) {
+    tl.to(
+      letters,
+      {
+        yPercent: 0,
+        opacity: 1,
+        duration: 0.6,
+        ease: "power3.out",
+        stagger: 0.025,
+      },
+      "-=0.3"
+    );
+  }
+  if (lines.length) {
+    tl.to(
+      lines,
+      {
+        yPercent: 0,
+        duration: 1,
+        ease: "power3.out",
+        stagger: 0.12,
+      },
+      "-=0.2"
+    );
+  }
   if (cue) {
-    gsap.fromTo(cue, { opacity: 0 }, { opacity: 1, duration: 1, delay: 1 });
+    tl.fromTo(cue, { opacity: 0 }, { opacity: 1, duration: 0.8 }, "-=0.3");
     gsap.to(cue, {
       y: 10,
       duration: 1.2,
       repeat: -1,
       yoyo: true,
       ease: "sine.inOut",
-      delay: 1,
+      delay: 1.8,
     });
   }
+}
+
+function initHeroParallax() {
+  const bg = document.querySelector("[data-hero-bg]");
+  const hero = bg?.closest("section");
+  if (!bg || !hero || prefersReducedMotion) return;
+
+  gsap.to(bg, {
+    yPercent: 10,
+    ease: "none",
+    scrollTrigger: {
+      trigger: hero,
+      start: "top top",
+      end: "bottom top",
+      scrub: true,
+    },
+  });
 }
 
 function initReveals() {
@@ -100,6 +145,79 @@ function initReveals() {
         start: "top 85%",
       },
     });
+  });
+}
+
+function initFlipCards() {
+  document.querySelectorAll("[data-flip-group]").forEach((group) => {
+    const cards = group.querySelectorAll("[data-flip-card]");
+    if (!cards.length) return;
+
+    if (prefersReducedMotion) {
+      gsap.set(cards, { opacity: 1, rotationY: 0, x: 0 });
+      return;
+    }
+
+    gsap.set(cards, { transformPerspective: 1200, rotationY: -70, x: 40 });
+    gsap.to(cards, {
+      opacity: 1,
+      rotationY: 0,
+      x: 0,
+      duration: 1,
+      ease: "power3.out",
+      stagger: 0.18,
+      scrollTrigger: {
+        trigger: group,
+        start: "top 80%",
+      },
+    });
+  });
+}
+
+function initPhilosophy() {
+  const section = document.querySelector("[data-philosophy-section]");
+  const items = section?.querySelectorAll("[data-philosophy-item]");
+  const dots = section?.querySelectorAll("[data-philosophy-dot]");
+  if (!section || !items?.length) return;
+
+  if (prefersReducedMotion) {
+    gsap.set(items, { opacity: 1 });
+    return;
+  }
+
+  gsap.set(items, { opacity: 0, scale: 0.96 });
+  gsap.set(items[0], { opacity: 1, scale: 1 });
+  if (dots?.length) dots[0].style.backgroundColor = "var(--color-gold)";
+
+  const segments = items.length;
+  let activeIndex = 0;
+
+  ScrollTrigger.create({
+    trigger: section,
+    start: "top top",
+    end: () => `+=${window.innerHeight * Math.max(1, segments - 1)}`,
+    pin: true,
+    scrub: 1,
+    invalidateOnRefresh: true,
+    onUpdate: (self) => {
+      const idx = Math.min(segments - 1, Math.floor(self.progress * segments));
+      if (idx === activeIndex) return;
+      activeIndex = idx;
+
+      items.forEach((el, i) => {
+        gsap.to(el, {
+          opacity: i === idx ? 1 : 0,
+          scale: i === idx ? 1 : 0.96,
+          duration: 0.5,
+          ease: "power2.out",
+          overwrite: true,
+        });
+      });
+
+      dots?.forEach((dot, i) => {
+        dot.style.backgroundColor = i === idx ? "var(--color-gold)" : "";
+      });
+    },
   });
 }
 
@@ -202,7 +320,10 @@ function init() {
   initSmoothScroll();
   initNav();
   initHero();
+  initHeroParallax();
   initReveals();
+  initFlipCards();
+  initPhilosophy();
   initCounters();
   initMarquee();
   initDrawPaths();

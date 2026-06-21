@@ -25,3 +25,4 @@ pnpm-debug.log*
 
 # personal/local Claude Code settings
 .claude/settings.local.json
+.claude/scheduled_tasks.lock

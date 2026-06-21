@@ -5,36 +5,21 @@
   --font-sans: "Inter", system-ui, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, monospace;
 
-  --color-ink: #08080b;
-  --color-ink-soft: #0c0c10;
-  --color-surface: #111116;
-  --color-surface-2: #16161c;
-  --color-surface-3: #1c1c23;
-  --color-line: rgba(243, 239, 230, 0.1);
-  --color-line-soft: rgba(243, 239, 230, 0.06);
+  --color-ink: #080808;
+  --color-ink-soft: #0d0d0d;
+  --color-surface: #121212;
+  --color-surface-2: #181818;
+  --color-surface-3: #1f1f1f;
+  --color-line: rgba(245, 240, 232, 0.1);
+  --color-line-soft: rgba(245, 240, 232, 0.06);
 
-  --color-cream: #f3efe6;
-  --color-cream-dim: #cfcabe;
-  --color-muted: #8f8b82;
+  --color-cream: #f5f0e8;
+  --color-cream-dim: #d9d2c4;
+  --color-muted: #948c7c;
 
-  --color-gold: #c9a866;
-  --color-gold-bright: #e6cd99;
-  --color-gold-dim: #8a724a;
-
-  --color-emerald: #15302b;
-
-  --animate-fade-up: fade-up 0.8s ease forwards;
-
-  @keyframes fade-up {
-    from {
-      opacity: 0;
-      transform: translateY(24px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
+  --color-gold: #b8960c;
+  --color-gold-bright: #e0c25a;
+  --color-gold-dim: #6b550a;
 }
 
 @layer base {
@@ -49,6 +34,7 @@
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    overflow-x: hidden;
   }
 
   ::selection {
@@ -110,8 +96,7 @@
 
 /* Initial hidden states for JS-driven scroll animations — kept outside
    @layer so they win the cascade and avoid a flash of unstyled content
-   before main.js runs. .js-ready (set in Layout) lifts them; <noscript>
-   strips them entirely for non-JS clients. */
+   before main.js runs. <noscript> in Layout strips them for non-JS clients. */
 [data-reveal],
 [data-reveal-item] {
   opacity: 0;
@@ -119,11 +104,32 @@
   will-change: transform, opacity;
 }
 
-[data-hero-line] {
+[data-hero-line],
+[data-hero-pre] {
   transform: translateY(110%);
+}
+
+[data-letter] {
+  opacity: 0;
+  transform: translateY(60%);
+  display: inline-block;
+  will-change: transform, opacity;
 }
 
 [data-scroll-cue],
 [data-draw-path] {
   opacity: 0;
+}
+
+[data-flip-card] {
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+[data-philosophy-item] {
+  opacity: 0;
+}
+
+[data-philosophy-item][data-active="true"] {
+  opacity: 1;
 }

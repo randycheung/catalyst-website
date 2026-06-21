@@ -7,8 +7,8 @@ interface Props {
 }
 
 const {
-  title = "Catalyst Funds Management | Institutional Alternative Investments",
-  description = "Catalyst Funds Management is a private alternative investment firm delivering disciplined, risk-adjusted returns across private credit, real assets, and special situations for institutional partners.",
+  title = "Catalyst Funds Management | Where Truth Meets Capital",
+  description = "Catalyst Funds Management is a Sydney-headquartered institutional alternative investment firm, with offices in Singapore, London, Dubai, and New York, deploying capital across global macro, systematic, credit, and multi-strategy investing.",
 } = Astro.props;
 ---
 
@@ -21,7 +21,7 @@ const {
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#08080b" />
+    <meta name="theme-color" content="#080808" />
 
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
@@ -29,8 +29,9 @@ const {
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://images.unsplash.com" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,400..600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,400..600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
 
@@ -39,8 +40,12 @@ const {
         [data-reveal],
         [data-reveal-item],
         [data-hero-line],
+        [data-hero-pre],
         [data-scroll-cue],
-        [data-draw-path] {
+        [data-draw-path],
+        [data-letter],
+        [data-flip-card],
+        [data-philosophy-item] {
           opacity: 1 !important;
           transform: none !important;
         }

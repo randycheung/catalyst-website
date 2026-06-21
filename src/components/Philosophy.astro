@@ -1,0 +1,62 @@
+---
+const values = [
+  {
+    number: "01",
+    title: "Seek the Truth",
+    description: "We pursue rigorous, independent analysis over consensus, and conviction over comfort.",
+  },
+  {
+    number: "02",
+    title: "One Team",
+    description: "Capital, research, and risk move as one discipline — no silos, no competing incentives.",
+  },
+  {
+    number: "03",
+    title: "Think Long Term",
+    description: "We underwrite for decades, not quarters, and build positions that compound through the cycle.",
+  },
+  {
+    number: "04",
+    title: "Integrity",
+    description: "What we tell our investors is what we believe — without exception, without spin.",
+  },
+];
+---
+
+<section id="philosophy" data-philosophy-section class="relative flex min-h-screen items-center overflow-hidden bg-ink">
+  <svg
+    class="pointer-events-none absolute -left-32 -top-32 h-[500px] w-[500px] opacity-[0.12]"
+    viewBox="0 0 500 500"
+    fill="none"
+  >
+    <polygon data-draw-path points="250,10 490,250 250,490 10,250" stroke="var(--color-gold)" stroke-width="1" />
+  </svg>
+
+  <div class="relative mx-auto w-full max-w-7xl px-6 lg:px-10">
+    <p class="eyebrow" data-reveal>Our Philosophy</p>
+
+    <div data-philosophy-stage class="relative mt-12 h-[440px] sm:h-[380px]">
+      {values.map((v, i) => (
+        <div
+          data-philosophy-item
+          data-active={i === 0 ? "true" : "false"}
+          class="absolute inset-0 flex flex-col gap-8 lg:flex-row lg:items-center lg:gap-20"
+        >
+          <span class="font-display text-[8rem] leading-none text-gold sm:text-[10rem] lg:text-[13rem]">
+            {v.number}
+          </span>
+          <div class="max-w-lg">
+            <h3 class="font-display text-4xl font-light text-cream sm:text-5xl">{v.title}</h3>
+            <p class="mt-5 text-lg leading-relaxed text-cream-dim">{v.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div data-philosophy-progress class="mt-10 flex gap-3">
+      {values.map((_, i) => (
+        <span data-philosophy-dot class="h-1 w-12 rounded-full bg-cream/15 transition-colors duration-300"></span>
+      ))}
+    </div>
+  </div>
+</section>
