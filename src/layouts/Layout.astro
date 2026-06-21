@@ -1,0 +1,53 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Catalyst Funds Management | Institutional Alternative Investments",
+  description = "Catalyst Funds Management is a private alternative investment firm delivering disciplined, risk-adjusted returns across private credit, real assets, and special situations for institutional partners.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#08080b" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,400..600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <noscript>
+      <style>
+        [data-reveal],
+        [data-reveal-item],
+        [data-hero-line],
+        [data-scroll-cue],
+        [data-draw-path] {
+          opacity: 1 !important;
+          transform: none !important;
+        }
+      </style>
+    </noscript>
+  </head>
+  <body class="bg-ink text-cream selection:bg-gold selection:text-ink">
+    <slot />
+  </body>
+</html>

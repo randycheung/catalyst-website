@@ -1,0 +1,22 @@
+---
+const items = [
+  "Founded 2009",
+  "$6.8B Assets Under Management",
+  "17-Year Track Record",
+  "4 Investment Strategies",
+  "Global Institutional LP Base",
+  "SEC-Registered Investment Adviser",
+];
+---
+
+<section class="relative border-y border-line bg-surface py-6">
+  <div class="no-scrollbar overflow-hidden">
+    <div data-marquee data-marquee-speed="60" class="flex w-max shrink-0 items-center gap-14 pr-14">
+      {[...items, ...items].map((item, i) => (
+        <span class="eyebrow whitespace-nowrap !text-muted" aria-hidden={i >= items.length ? "true" : undefined}>
+          {item}
+        </span>
+      ))}
+    </div>
+  </div>
+</section>

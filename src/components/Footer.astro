@@ -1,0 +1,58 @@
+---
+const columns = [
+  {
+    title: "Firm",
+    links: ["Approach", "Track Record", "Leadership", "Careers"],
+  },
+  {
+    title: "Strategies",
+    links: ["Private Credit", "Real Assets", "Special Situations", "Secondaries"],
+  },
+  {
+    title: "Resources",
+    links: ["Investor Letters", "Press", "Disclosures", "Contact"],
+  },
+];
+---
+
+<footer class="bg-ink">
+  <div class="mx-auto max-w-7xl px-6 py-20 lg:px-10">
+    <div class="grid gap-12 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
+      <div>
+        <span class="font-display text-xl font-semibold tracking-tight text-cream">Catalyst</span>
+        <p class="eyebrow mt-1">Funds Management</p>
+        <p class="mt-6 max-w-xs text-sm leading-relaxed text-muted">
+          A private alternative investment firm allocating institutional capital across private credit, real assets, and special situations.
+        </p>
+      </div>
+
+      {columns.map((col) => (
+        <div>
+          <p class="eyebrow !text-muted">{col.title}</p>
+          <ul class="mt-5 space-y-3">
+            {col.links.map((link) => (
+              <li>
+                <a href="#" class="text-sm text-cream-dim transition-colors duration-300 hover:text-gold">
+                  {link}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-16 border-t border-line pt-8">
+      <p class="max-w-4xl text-xs leading-relaxed text-muted">
+        Catalyst Funds Management LP is a private investment adviser. This website is for informational purposes only and does not constitute an offer to sell, or a solicitation of an offer to buy, any security, and may not be relied upon in connection with any offer or sale of securities. Alternative investments are speculative, involve a high degree of risk, and are intended only for sophisticated, qualified investors who can bear the economic risk of loss. Past performance is not indicative of future results.
+      </p>
+      <div class="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <p class="text-xs text-muted">© 2026 Catalyst Funds Management LP. All rights reserved.</p>
+        <div class="flex gap-6">
+          <a href="#" class="text-xs text-muted transition-colors duration-300 hover:text-gold">Privacy Policy</a>
+          <a href="#" class="text-xs text-muted transition-colors duration-300 hover:text-gold">Terms of Use</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

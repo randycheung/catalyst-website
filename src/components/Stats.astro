@@ -1,0 +1,23 @@
+---
+const stats = [
+  { value: "6.8", prefix: "$", suffix: "B", label: "Assets under management" },
+  { value: "14.2", suffix: "%", label: "Net IRR since inception" },
+  { value: "17", label: "Years deploying institutional capital" },
+  { value: "142", suffix: "+", label: "Portfolio positions realized" },
+];
+---
+
+<section class="border-b border-line bg-ink">
+  <div class="mx-auto max-w-7xl px-6 py-24 lg:px-10">
+    <div data-reveal-group class="grid grid-cols-2 gap-x-8 gap-y-14 lg:grid-cols-4">
+      {stats.map((stat) => (
+        <div data-reveal-item class="border-l border-line pl-6">
+          <p class="font-display text-4xl font-light text-cream sm:text-5xl">
+            {stat.prefix}<span data-counter={stat.value}>0</span>{stat.suffix}
+          </p>
+          <p class="mt-3 text-sm leading-snug text-muted">{stat.label}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

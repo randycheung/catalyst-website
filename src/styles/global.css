@@ -1,0 +1,129 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Fraunces", "Georgia", serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --color-ink: #08080b;
+  --color-ink-soft: #0c0c10;
+  --color-surface: #111116;
+  --color-surface-2: #16161c;
+  --color-surface-3: #1c1c23;
+  --color-line: rgba(243, 239, 230, 0.1);
+  --color-line-soft: rgba(243, 239, 230, 0.06);
+
+  --color-cream: #f3efe6;
+  --color-cream-dim: #cfcabe;
+  --color-muted: #8f8b82;
+
+  --color-gold: #c9a866;
+  --color-gold-bright: #e6cd99;
+  --color-gold-dim: #8a724a;
+
+  --color-emerald: #15302b;
+
+  --animate-fade-up: fade-up 0.8s ease forwards;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+@layer base {
+  html {
+    background-color: var(--color-ink);
+    color-scheme: dark;
+  }
+
+  body {
+    background-color: var(--color-ink);
+    color: var(--color-cream);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background-color: var(--color-gold);
+    color: var(--color-ink);
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+  }
+
+  a {
+    color: inherit;
+  }
+}
+
+@layer utilities {
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .hairline {
+    border-color: var(--color-line);
+  }
+
+  .gold-underline {
+    position: relative;
+    display: inline-block;
+  }
+
+  .gold-underline::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -0.08em;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, var(--color-gold), transparent);
+    transform-origin: left;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+}
+
+/* Initial hidden states for JS-driven scroll animations — kept outside
+   @layer so they win the cascade and avoid a flash of unstyled content
+   before main.js runs. .js-ready (set in Layout) lifts them; <noscript>
+   strips them entirely for non-JS clients. */
+[data-reveal],
+[data-reveal-item] {
+  opacity: 0;
+  transform: translateY(28px);
+  will-change: transform, opacity;
+}
+
+[data-hero-line] {
+  transform: translateY(110%);
+}
+
+[data-scroll-cue],
+[data-draw-path] {
+  opacity: 0;
+}

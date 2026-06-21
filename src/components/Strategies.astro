@@ -1,0 +1,67 @@
+---
+const strategies = [
+  {
+    index: "01",
+    title: "Private Credit",
+    allocation: "38%",
+    description:
+      "Senior secured direct lending to mid-market sponsors, structured for contractual income and downside protection through the cycle.",
+  },
+  {
+    index: "02",
+    title: "Real Assets & Infrastructure",
+    allocation: "24%",
+    description:
+      "Long-duration ownership of essential infrastructure and real asset platforms generating inflation-linked cash flows.",
+  },
+  {
+    index: "03",
+    title: "Special Situations",
+    allocation: "21%",
+    description:
+      "Opportunistic capital deployed into complex, dislocated, and event-driven situations across the capital structure.",
+  },
+  {
+    index: "04",
+    title: "Secondaries & Co-Investments",
+    allocation: "17%",
+    description:
+      "Privileged access to seasoned private equity portfolios and direct co-investments alongside trusted sponsors.",
+  },
+];
+---
+
+<section id="strategies" data-horizontal-section class="relative bg-surface">
+  <div class="mx-auto max-w-7xl px-6 pt-24 lg:px-10">
+    <p class="eyebrow">Investment Strategies</p>
+    <h2 class="mt-5 max-w-2xl text-balance font-display text-4xl font-light leading-tight text-cream sm:text-5xl">
+      Four disciplines. One underwriting standard.
+    </h2>
+  </div>
+
+  <div class="no-scrollbar mt-16 overflow-x-auto px-6 pb-24 lg:overflow-x-hidden lg:px-0 lg:pb-32">
+    <div
+      data-horizontal-track
+      class="flex w-max gap-6 lg:gap-8 lg:px-[max(2.5rem,calc((100vw-80rem)/2+2.5rem))]"
+    >
+      {strategies.map((s) => (
+        <article
+          data-reveal
+          class="flex h-[420px] w-[300px] flex-col justify-between rounded-2xl border border-line bg-surface-2 p-8 sm:h-[460px] sm:w-[360px]"
+        >
+          <div>
+            <span class="font-mono text-sm text-gold">{s.index}</span>
+            <h3 class="mt-6 font-display text-2xl font-medium leading-snug text-cream">
+              {s.title}
+            </h3>
+          </div>
+          <p class="text-sm leading-relaxed text-cream-dim">{s.description}</p>
+          <div class="flex items-baseline justify-between border-t border-line pt-5">
+            <span class="eyebrow !text-muted">Target Allocation</span>
+            <span class="font-display text-xl text-gold">{s.allocation}</span>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

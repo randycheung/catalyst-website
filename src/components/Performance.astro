@@ -1,0 +1,68 @@
+---
+const milestones = [
+  { year: "2009", label: "Firm founded", x: "4%" },
+  { year: "2014", label: "$1.2B AUM milestone", x: "32%" },
+  { year: "2019", label: "Private credit strategy launched", x: "58%" },
+  { year: "2026", label: "$6.8B AUM, 17-year track record", x: "94%" },
+];
+---
+
+<section id="performance" class="border-b border-line bg-surface">
+  <div class="mx-auto max-w-7xl px-6 py-28 lg:px-10">
+    <div class="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
+      <div>
+        <p class="eyebrow" data-reveal>Track Record</p>
+        <h2 data-reveal class="mt-5 max-w-xl text-balance font-display text-4xl font-light leading-tight text-cream sm:text-5xl">
+          Seventeen years of compounding through every cycle.
+        </h2>
+      </div>
+      <p data-reveal class="max-w-xs text-sm leading-relaxed text-muted">
+        Indexed growth of invested capital across Catalyst strategies since inception. Past performance is not indicative of future results.
+      </p>
+    </div>
+
+    <div class="relative mt-20 h-[340px] w-full">
+      <svg class="h-full w-full" viewBox="0 0 1000 300" preserveAspectRatio="none" fill="none">
+        <line x1="0" y1="75" x2="1000" y2="75" stroke="var(--color-line)" stroke-width="1" />
+        <line x1="0" y1="150" x2="1000" y2="150" stroke="var(--color-line)" stroke-width="1" />
+        <line x1="0" y1="225" x2="1000" y2="225" stroke="var(--color-line)" stroke-width="1" />
+
+        <path
+          d="M0 270 L1000 270 L1000 300 L0 300 Z"
+          fill="url(#perf-fade)"
+          opacity="0.5"
+        />
+        <path
+          data-draw-path
+          d="M0 270 C 80 268, 140 250, 200 245 C 280 238, 320 230, 380 210 C 460 184, 500 195, 560 165 C 640 128, 680 140, 740 105 C 820 60, 860 75, 920 38 C 950 18, 970 22, 1000 10"
+          stroke="var(--color-gold)"
+          stroke-width="2.5"
+          stroke-linecap="round"
+        />
+
+        <defs>
+          <linearGradient id="perf-fade" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="var(--color-gold)" stop-opacity="0.18" />
+            <stop offset="100%" stop-color="var(--color-gold)" stop-opacity="0" />
+          </linearGradient>
+        </defs>
+      </svg>
+
+      <div class="pointer-events-none absolute inset-0">
+        {milestones.map((m) => (
+          <div
+            data-reveal
+            class="absolute bottom-0 flex -translate-x-1/2 flex-col items-center gap-2"
+            style={`left: ${m.x};`}
+          >
+            <span class="h-2 w-2 rounded-full bg-gold"></span>
+            <span class="mt-1 w-max max-w-[9rem] text-center text-xs leading-snug text-cream-dim">
+              <span class="block font-mono text-[0.7rem] text-gold">{m.year}</span>
+              {m.label}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
